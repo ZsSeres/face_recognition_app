@@ -1,0 +1,6 @@
+uvicorn
+fastapi
+Pillow
+numpy
+aiohttp
+pydantic
