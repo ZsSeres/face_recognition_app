@@ -1,12 +1,11 @@
+from PIL import Image
+
 from src.shared.network_models import RecognizeFaceRequest
 from src.shared.image_transfer_converter import ImageTransferConverter
 
-from PIL import Image
-from PIL.PngImagePlugin import PngImageFile
-
-
 # Sending
-# Docs-nál csekkolni, hogy felismeri-e a file feltöltést
+# Docs-nál csekkolni, hogy felismeri-e a file feltöltést: 
+# nem is kell neki, mert nem külső upload-al fog menni a fájl
 img = Image.open(r"../assets/demo_faces/elon_01.png")
 encoded_bytes=ImageTransferConverter.encode_img(img)
 req = RecognizeFaceRequest(encoded_image_bytes = encoded_bytes)
