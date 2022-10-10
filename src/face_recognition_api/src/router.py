@@ -1,4 +1,4 @@
-from fastapi import APIRouter, UploadFile
+from fastapi import APIRouter
 
 from src.shared.network_models import RecognizeFaceRequest,RecognizeFaceResponse,DetectFacesRequest,DetectFacesResponse
 from src.shared.image_transfer_converter import ImageTransferConverter

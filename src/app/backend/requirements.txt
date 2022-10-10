@@ -1,5 +1,6 @@
 uvicorn
 fastapi
+fastapi_utils
 Pillow
 numpy
 aiohttp
