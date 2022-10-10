@@ -31,3 +31,5 @@ async def detect_faces(body: DetectFacesRequest)->DetectFacesResponse:
     resp = DetectFacesResponse(face_bounding_boxes=face_bounding_boxes)
 
     return resp
+
+# TODO: get images_dir endpoint!

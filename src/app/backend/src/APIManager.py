@@ -111,3 +111,5 @@ class APIManager:
 
         res: RecognizeFaceResponse = self.__do_communication(api_endpoint="recognize_face",request_model_object=req,response_model_class=RecognizeFaceResponse)
         return res.face_uuid
+
+    #TODO: get images_dir function!

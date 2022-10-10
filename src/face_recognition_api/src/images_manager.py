@@ -13,7 +13,7 @@ class ImagesManager:
         face images. Get face_uuid_names
         Delete images maybe important too.
     """
-    
+    # TODO: get_images_dir function!
     def __init__(self,base_path:str=DEFAULT_FACES_BASE_PATH,img_shape:tuple=DEFAULT_IMAGE_SHAPE):
         self.base_path = base_path
         self.img_shape = img_shape
