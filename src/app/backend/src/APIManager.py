@@ -1,6 +1,7 @@
 from src.shared.image_transfer_converter import ImageTransferConverter
-from src.shared.network_models import DetectFacesRequest,DetectFacesResponse,RecognizeFaceRequest,RecognizeFaceResponse
+from src.shared.network_models import DetectFacesRequest,DetectFacesResponse, GetImagesDirResponse,RecognizeFaceRequest,RecognizeFaceResponse
 from src.shared.models import BoundingBox
+from src.shared.singleton import Singleton
 
 from PIL.PngImagePlugin import PngImageFile
 from typing import List,Optional,Type
@@ -31,7 +32,7 @@ class APICommunicationError(Exception):
         super().__init__(message)
 
 
-class APIManager:
+class APIManager(metaclass=Singleton):
     """Class that responsible for API communication."""
 
     def __init__(self, api_url:str=DEFAULT_API_URL):
@@ -98,18 +99,20 @@ class APIManager:
         """
         return self.__is_api_online
     
-    def detect_faces(self,img: PngImageFile)->List[BoundingBox]:
+    async def detect_faces(self,img: PngImageFile)->List[BoundingBox]:
         encoded_img_bytes = ImageTransferConverter().encode_img(img)
         req = DetectFacesRequest(encoded_img_bytes=encoded_img_bytes)
 
-        res: DetectFacesResponse = self.__do_communication(api_endpoint="detect_faces",request_model_object=req,response_model_class=DetectFacesResponse)
+        res: DetectFacesResponse = await self.__do_communication(api_endpoint="detect_faces",request_model_object=req,response_model_class=DetectFacesResponse)
         return res.face_bounding_boxes
 
-    def recognize_face(self,img: PngImageFile)->UUID:
+    async def recognize_face(self,img: PngImageFile)->UUID:
         encoded_img_bytes = ImageTransferConverter().encode_img(img)
         req = RecognizeFaceRequest(encoded_img_bytes=encoded_img_bytes)
 
-        res: RecognizeFaceResponse = self.__do_communication(api_endpoint="recognize_face",request_model_object=req,response_model_class=RecognizeFaceResponse)
+        res: RecognizeFaceResponse = await self.__do_communication(api_endpoint="recognize_face",request_model_object=req,response_model_class=RecognizeFaceResponse)
         return res.face_uuid
 
-    #TODO: get images_dir function!
+    async def get_images_dir(self,face_id: UUID)->str:
+        res: GetImagesDirResponse = await self.__do_communication(api_endpoint=f"get_images_dir/{face_id},",response_model_class=GetImagesDirResponse,method=RequestMethod.GET)
+        return res.images_dir

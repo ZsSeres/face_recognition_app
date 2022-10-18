@@ -67,3 +67,8 @@ class ImagesManager:
             uuids.append(uuid)
         
         return uuids
+
+    def get_images_dir(self,face_uuid: UUID)->str:
+        """Returns full path"""
+        #TODO: test this!
+        return os.path.join(os.getcwd(),self.base_path,face_uuid)

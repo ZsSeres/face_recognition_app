@@ -1,6 +1,8 @@
+from uuid import UUID
 from fastapi import APIRouter
+from src.face_recognition_api.src.images_manager import ImagesManager
 
-from src.shared.network_models import RecognizeFaceRequest,RecognizeFaceResponse,DetectFacesRequest,DetectFacesResponse
+from src.shared.network_models import RecognizeFaceRequest,RecognizeFaceResponse,DetectFacesRequest,DetectFacesResponse,GetImagesDirResponse
 from src.shared.image_transfer_converter import ImageTransferConverter
 from src.face_recognition_api.src.face_recognizer import FaceRecognizer
 from  src.face_recognition_api.src.face_detector import detect_faces
@@ -32,4 +34,7 @@ async def detect_faces(body: DetectFacesRequest)->DetectFacesResponse:
 
     return resp
 
-# TODO: get images_dir endpoint!
+@router.get("/get_images_dir/{face_id}", response_model=GetImagesDirResponse)
+async def get_images_dir(face_id: UUID) -> GetImagesDirResponse:
+    images_dir = ImagesManager().get_images_dir(face_uuid=face_id)
+    return GetImagesDirResponse(images_dir=images_dir)

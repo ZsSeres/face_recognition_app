@@ -16,3 +16,14 @@ class DetectFacesRequest(BaseModel):
 class DetectFacesResponse(BaseModel):
     face_bounding_boxes: List[BoundingBox]
 
+class GetImagesDirResponse(BaseModel):
+    """Network model for the get_images_dir endpoint.
+    
+    Attributes:
+        images_dir(str): The file path for the corresponding face
+        images.
+    
+    """
+    
+    images_dir: str
+

@@ -1,5 +1,6 @@
 from src.app.backend.src.models import Face,Person
 from src.app.backend.src.name_generator import name_generator
+from src.shared.singleton import Singleton
 
 from typing import Dict, List
 from uuid import UUID, uuid4
@@ -12,7 +13,7 @@ class PersonNotFoundException(Exception):
     pass
 
 
-class PersonManager:
+class PersonManager(metaclass=Singleton):
     """Class that responsible for Person management.
     
         Supported operations:
@@ -28,15 +29,21 @@ class PersonManager:
         """Load persons from some kind of holder: file or DB."""
         pass
     
-    def create_person(self,face: Face):
-        
-        #check if the face is registered to another person
+    def register_face(self,face: Face):
+        # if the face_id is already registered to another person
+        # simply return, that means no creation is necessary
+        # if the face id is new creates a new person
+
+        # check if the face is registered to another person
         registered_face_ids = [person.faces for person in self.__persons.values()]
         registered_face_ids = list(chain.from_iterable(registered_face_ids))
+        
         if face.id in registered_face_ids:
-            #TODO: custom error instead of this???
-            raise ValueError()
+            return
 
+        self.__create_person(face=face)
+
+    def __create_person(self,face: Face):
         gen_id = uuid4()
         gen_name = name_generator()
 
