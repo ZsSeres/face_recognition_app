@@ -1,7 +1,0 @@
-fastapi
-fastapi_utils
-uvicorn
-dlib
-cmake # install this seperatly
-face-recognition
-pydantic
