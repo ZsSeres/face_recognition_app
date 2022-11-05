@@ -1,6 +1,6 @@
-from src.app.backend.src.models import Face,Person
-from src.app.backend.src.name_generator import name_generator
-from src.shared.singleton import Singleton
+from app.models import Face,Person
+from app.name_generator import name_generator
+from app.singleton import Singleton
 
 from typing import Dict, List
 from uuid import UUID, uuid4
@@ -25,11 +25,12 @@ class PersonManager(metaclass=Singleton):
     
     __persons: Dict[UUID,Person] = {}
 
-    def __init__(self,initial_persons: List[Person]):
-        """Load persons from some kind of holder: file or DB."""
-        pass
+    # def __init__(self,initial_persons: List[Person]):
+    #     """Load persons from some kind of holder: file or DB."""
+    #     pass
     
-    def register_face(self,face: Face):
+    def register_face(self,face: Face)->UUID:
+        """Returns Persons UID"""
         # if the face_id is already registered to another person
         # simply return, that means no creation is necessary
         # if the face id is new creates a new person
@@ -78,6 +79,15 @@ class PersonManager(metaclass=Singleton):
         
         return self.__persons[person_id]
 
+    def find_person_by_face_uuid(self,face_uuid: UUID)->Person:
+        persons = list(self.__persons.values())
+        
+        for person in persons:
+            face_uuids = [face.uuid for face in person.faces]
+
+            if face_uuid in face_uuids:
+                return Person
+    
     def get_all_persons(self)->Dict[UUID,Person]:
         # Consider this to return a list instead of dict
         return self.__persons

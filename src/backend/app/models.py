@@ -21,12 +21,12 @@ class Person(BaseModel):
     """Data class that represents a person.
     
         Attributes:
-            id(UUID): uniquie identifier
+            id(UUID): uniquie identifier, generated via face_recognizer
             name(str): name of the person
             faces(List[Faces]): list of registered Face objects for the person
     """
     
-    id: UUID
+    id: UUID # generated via face_recognizer
     name: str
     faces: List[Face]
 
@@ -63,3 +63,4 @@ class BoundingBox(BaseModel):
 
 class FrameInfo(BaseModel):
     bounding_boxes: List[BoundingBox]
+    names: List[str]

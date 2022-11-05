@@ -10,10 +10,12 @@ while(vidcap.isOpened()):
     ret, frame = vidcap.read() 
 
     if ret:
-            app.process_frame(frame)
+            app.update_frame(frame)
             cv2.imshow("Frame",frame) 
             
             if cv2.waitKey(1) & 0xFF == ord('q'):
+                # exiting gracefully :3
+                app.close_processing_thread()
                 break
     else:
         print("Unable to open frame")

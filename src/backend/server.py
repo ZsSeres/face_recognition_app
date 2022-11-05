@@ -13,14 +13,12 @@ from av import VideoFrame
 from aiortc import MediaStreamTrack, RTCPeerConnection, RTCSessionDescription
 from aiortc.contrib.media import MediaBlackhole, MediaPlayer, MediaRecorder, MediaRelay
 from VideoTransformer import VideoTransformer
-from face_detector import FaceDetector
 
 ROOT = os.path.dirname(__file__)
 
 logger = logging.getLogger("pc")
 pcs = set()
 relay = MediaRelay()
-face_detector = FaceDetector()
 
 async def index(request):
     content = open(os.path.join(ROOT, "index.html"), "r").read()

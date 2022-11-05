@@ -30,6 +30,8 @@ class FaceRecognizer(metaclass=Singleton):
             for encoding in encodings:
                 self.add_encoding(encoding,uuid)
 
+        print(f"Initial face encoding dict: {self.face_encodings_dict.keys()}")
+
     def add_encoding(self,encoding: np.ndarray, uuid: UUID):
         if not uuid in self.face_encodings_dict:
             self.face_encodings_dict[uuid] = []
@@ -47,7 +49,7 @@ class FaceRecognizer(metaclass=Singleton):
         # -> 1 darab numpy tömb
         #  
         closest_group_uuid = None
-        absolute_min_distance = float(inf)
+        absolute_min_distance = float('inf')
 
         for uuid in self.face_encodings_dict:
             group_min_distance = self.get_min_distance_in_group(encoding,uuid)
@@ -56,20 +58,30 @@ class FaceRecognizer(metaclass=Singleton):
                 absolute_min_distance = group_min_distance
                 closest_group_uuid = uuid
 
-            return (closest_group_uuid,absolute_min_distance)
+        return (closest_group_uuid,absolute_min_distance)
     
-    def recognize_face(self,image: np.ndarray)->UUID:
+    def recognize_face(self,image: np.ndarray)->Optional[UUID]:
                 
-        encoding = face_recognition.face_encodings(image)[0]
-        closest_uuid,min_distance = EncodingManager.encoding_manager.get_closest_group(encoding)
+        encodings = face_recognition.face_encodings(image)
+        if (len(encodings)==0):
+            return None
+        encoding = encodings [0]
+        closest_uuid,min_distance = self.get_closest_group(encoding)
 
+
+        print(f"Min distance: {min_distance}")
         if min_distance > self.recognize_tolerance:
+            print("New face detected!")
             target_uuid = uuid4()
+            ImagesManager().save_image(target_uuid,image) # only save image if a brand new face is detected
         else:
             target_uuid = closest_uuid
 
         if min_distance > self.identical_tolerance:
-            ImagesManager().save_image(target_uuid,image)
-            self.encoding_manager.add_encoding(encoding,target_uuid)
+            # ImagesManager().save_image(target_uuid,image) # collects data from already detected faces
+            print("Adding encoding")
+            self.add_encoding(encoding,target_uuid)
         
+
+        #print(f"Face encodings: {self.face_encodings_dict.keys()}")
         return target_uuid    

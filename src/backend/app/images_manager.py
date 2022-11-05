@@ -1,6 +1,5 @@
 from tkinter import Image
-from PIL.PngImagePlugin import PngImageFile
-from PIL import Image
+import cv2
 from uuid import UUID, uuid4
 from typing import List
 import os
@@ -9,10 +8,8 @@ import os
 import numpy as np
 
 absolute_path = os.path.dirname(__file__)
-print(f"Absolute path: {absolute_path}")
 relative_path = r"../../shared/assets/faces" 
 DEFAULT_FACES_BASE_PATH: str = os.path.join(absolute_path, relative_path)
-print(f"Base path: {DEFAULT_FACES_BASE_PATH}")
 DEFAULT_IMAGE_SHAPE: tuple = (256,256)
 
 class ImagesManager:
@@ -36,7 +33,6 @@ class ImagesManager:
             -> save image with full path
             -> return file path
         """
-        image = Image.fromarray(image)
         dir_path = os.path.join(self.base_path,str(face_uuid))
         
         if not os.path.exists(dir_path):
@@ -47,11 +43,11 @@ class ImagesManager:
         name_uuid = uuid4()
         file_path = os.path.join(dir_path,str(name_uuid))+'.png'
         
-        image.save(file_path)
+        cv2.imwrite(file_path,image)
         return file_path
        
     def load_images(self,face_uuid: UUID)-> List[np.ndarray]:
-        images: List[PngImageFile] = []
+        images: List[np.ndarray] = []
         dir_path = os.path.join(self.base_path,str(face_uuid))
         
         if not os.path.exists(dir_path):
@@ -60,9 +56,8 @@ class ImagesManager:
         for image_name in os.listdir(dir_path):
             if image_name.endswith('.png'):
               image_path = os.path.join(dir_path,image_name)
-              print(image_path)
-              image = Image.open(image_path)
-              images.append(np.asarray(image))  
+              image = cv2.imread(image_path)
+              images.append(image)  
 
         return images
     
@@ -79,4 +74,7 @@ class ImagesManager:
     def get_images_dir(self,face_uuid: UUID)->str:
         """Returns full path"""
         #TODO: test this!
-        return os.path.join(os.getcwd(),self.base_path,face_uuid)
+        print(f"Base path: {self.base_path}")
+        print(f"Face uuid: {face_uuid}")
+        
+        return os.path.join(self.base_path,str(face_uuid))

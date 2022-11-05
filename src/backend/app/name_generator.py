@@ -2,8 +2,8 @@ from numpy import random
 from typing import List
 
 
-DEFAULT_FIRST_NAMES: List[str] = []
-DEFAULT_LAST_NAMES: List[str] = []
+DEFAULT_FIRST_NAMES: List[str] = ['Pistike','Sanyika','Zolika','Leonidasz','Valentint']
+DEFAULT_LAST_NAMES: List[str] = ['Nagy','Kovács','Szabó','Kiss','Kékesi']
 
 def name_generator(first_names: List[str]=DEFAULT_FIRST_NAMES, last_names: List[str]=DEFAULT_LAST_NAMES)->str:
     """Generates a random name from the given set of first and last names."""
