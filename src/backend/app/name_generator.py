@@ -15,7 +15,7 @@ def name_generator(first_names: List[str]=DEFAULT_FIRST_NAMES, last_names: List[
     first_name_idx = __create_list_idx(first_names)
     last_name_idx = __create_list_idx(last_names)
 
-    first_name = first_name[first_name_idx]
-    last_name = last_name[last_name_idx]
+    first_name = first_names[first_name_idx]
+    last_name = last_names[last_name_idx]
 
     return f"{first_name} {last_name}"

@@ -2,6 +2,7 @@ from pydantic import BaseModel
 from uuid import UUID
 from typing import List, Tuple
 
+import numpy as np
 
 class Face(BaseModel):
     """Dataclass for person faces.
@@ -51,6 +52,13 @@ class BoundingBox(BaseModel):
         """
         return (self.left,self.top,self.right,self.bottom)
     
+    def __sub__(self,other)->float:
+        """Returns the eukladian distance of the two given rectangle's top left corners."""
+        x_dist = self.left - other.left
+        y_dist = self.top - other.top
+
+        return np.sqrt(x_dist**2 + y_dist**2)
+
     def get_width(self)->int:
         pass
     
@@ -59,7 +67,10 @@ class BoundingBox(BaseModel):
     
     def area(self)->int:
         """Calculate the are of the bounding box."""
-        pass
+        width = np.abs(self.left-self.right)
+        height= np.abs (self.top-self.bottom)
+
+        return width*height
 
 class FrameInfo(BaseModel):
     bounding_boxes: List[BoundingBox]

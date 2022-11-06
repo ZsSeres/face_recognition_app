@@ -2,11 +2,12 @@ from uuid import uuid4,UUID
 
 from app.singleton import Singleton
 from app.images_manager import ImagesManager
+from app.models import BoundingBox
 from typing import List,Dict, Tuple, Optional
 import face_recognition
-
-
+import time
 import numpy as np
+import dlib
 
 DEFAULT_RECOGNIZE_TOLERANCE = 0.6
 DEFAULT_IDENTICAL_TOLERANCE = 0.1
@@ -62,12 +63,17 @@ class FaceRecognizer(metaclass=Singleton):
     
     def recognize_face(self,image: np.ndarray)->Optional[UUID]:
                 
-        encodings = face_recognition.face_encodings(image)
+        rect = (0,image.shape[0],image.shape[1],0) # top, right, bottom, left
+        t1 = time.time()
+        encodings = face_recognition.face_encodings(image,[rect])
+        t2 = time.time()
         if (len(encodings)==0):
             return None
         encoding = encodings [0]
+        t3 = time.time()
         closest_uuid,min_distance = self.get_closest_group(encoding)
-
+        t4 = time.time()
+        print(f"Closest found time: {t4-t3}")
 
         print(f"Min distance: {min_distance}")
         if min_distance > self.recognize_tolerance:

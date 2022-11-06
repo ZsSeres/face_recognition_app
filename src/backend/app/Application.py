@@ -10,10 +10,10 @@ from app.face_detector import FaceDetector
 from app.face_recognizer import FaceRecognizer
 from app.images_manager import ImagesManager
 from app.PersonManager import PersonManager
-from app.models import FrameInfo, Face
+from app.models import FrameInfo, Face, BoundingBox
 from typing import List
 
-DEFAULT_SAMPLE_PERIOD_TIME = 5
+DEFAULT_SAMPLE_PERIOD_TIME = 0.1
 
 
 class Application(metaclass=Singleton):
@@ -55,8 +55,8 @@ class Application(metaclass=Singleton):
         with self.processed_frame_info_lock:
             main_thread_frame_info = self.processed_frame_info.copy(deep=True)
         
-        self.face_detector.draw_bounding_boxes(frame,main_thread_frame_info.bounding_boxes)
-        #self.draw_names(frame,main_thread_frame_info.names)
+        self.face_detector.draw_bounding_boxes(frame)
+        # self.draw_names(frame,main_thread_frame_info.names,main_thread_frame_info.bounding_boxes)
         return frame
 
     def process_frame_func(self):
@@ -69,38 +69,46 @@ class Application(metaclass=Singleton):
             while(not (self.sampled_frames.empty())):
                 frame = self.sampled_frames.get()
 
-                bounding_boxes = self.face_detector.detect_faces(frame)
-                faces = self.face_detector.crop_faces(frame,bounding_boxes)
+                self.face_detector.update(frame)
+                print(f"New bounding boxes: {self.face_detector.get_new_bounding_boxes()}")
+                faces = self.face_detector.crop_faces(frame)
 
                 name_labels: List[str] = []
-                for index,face in enumerate(faces):
-                    face_uuid = self.face_recognizer.recognize_face(face)
+                # for index,face in enumerate(faces):
+                #     face_uuid = self.face_recognizer.recognize_face(face)
                     
-                    if face_uuid is None:
-                        continue
+                #     if face_uuid is None:
+                #         continue
                     
-                    print(face_uuid)
-                    file_path = self.images_manager.get_images_dir(face_uuid)
-                    face = Face(id=face_uuid,file_path=file_path)
+                #     print(f"Face UUID: {face_uuid}")
+                #     file_path = self.images_manager.get_images_dir(face_uuid)
+                #     print(f"File path: {file_path}")
+                #     face = Face(id=face_uuid,images_file_path=file_path)
 
-                    self.person_manager.register_face(face)
-                    person = self.person_manager.find_person_by_face_uuid(face_uuid)
-                    name_labels.append(person.name)
-                    print(face_uuid)
+                #     self.person_manager.register_face(face)
+                #     person = self.person_manager.find_person_by_face_uuid(face_uuid)
+                #     name_labels.append(person.name)
+                    
 
                 with self.processed_frame_info_lock:
-                    self.processed_frame_info.bounding_boxes = bounding_boxes
-                    #self.processed_frame_info.names = name_labels
-            
+                    self.processed_frame_info.bounding_boxes = self.face_detector.get_bounding_boxes()
+                   # self.processed_frame_info.names = name_labels
             time.sleep(0.2)
     
     def close_processing_thread(self):
         self.is_processing_thread_running = False
         self.processing_thread.join()
 
-    def draw_names(frame: np.ndarray,names: List[str]):
-        for name in names:
-            cv2.putText(frame,name,(100,100))
+    def draw_names(self,frame: np.ndarray,names: List[str],bounding_boxes: List[BoundingBox]):
+        font = cv2.FONT_HERSHEY_SIMPLEX
+        fontScale = 1
+        color = (0, 0, 255)
+        thickness = 2
+        
+        for idx,bb in enumerate(bounding_boxes):
+            org = (bb.bottom,bb.left)
+            cv2.putText(frame,names[idx], org, font, 
+                   fontScale, color, thickness, cv2.LINE_AA)
     
         
         

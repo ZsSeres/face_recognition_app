@@ -83,10 +83,10 @@ class PersonManager(metaclass=Singleton):
         persons = list(self.__persons.values())
         
         for person in persons:
-            face_uuids = [face.uuid for face in person.faces]
+            face_uuids = [face.id for face in person.faces]
 
             if face_uuid in face_uuids:
-                return Person
+                return person
     
     def get_all_persons(self)->Dict[UUID,Person]:
         # Consider this to return a list instead of dict

@@ -12,7 +12,8 @@ while(vidcap.isOpened()):
     if ret:
             app.update_frame(frame)
             cv2.imshow("Frame",frame) 
-            
+            # fps = vidcap.get(cv2.CAP_PROP_FPS)
+            # print("Frames per second using video.get(cv2.CAP_PROP_FPS) : {0}".format(fps))
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 # exiting gracefully :3
                 app.close_processing_thread()
