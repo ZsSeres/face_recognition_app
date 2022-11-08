@@ -1,0 +1,284 @@
+{
+    "persons": {
+        "e723be69-6ac8-4a91-a73c-c949bd7021e4": {
+            "id": "e723be69-6ac8-4a91-a73c-c949bd7021e4",
+            "name": "Leonidasz Kiss",
+            "faces": [
+                {
+                    "id": "bebb5dc2-7d8d-4e4f-bb08-61e9b1f87f8d",
+                    "images_file_path": "C:\\git\\face_recognition_app\\src\\backend\\app\\../../shared/assets/faces\\bebb5dc2-7d8d-4e4f-bb08-61e9b1f87f8d"
+                }
+            ]
+        },
+        "6d661f11-1300-43d8-b328-4dc0cb9d541f": {
+            "id": "6d661f11-1300-43d8-b328-4dc0cb9d541f",
+            "name": "Pistike Kiss",
+            "faces": [
+                {
+                    "id": "bebb5dc2-7d8d-4e4f-bb08-61e9b1f87f8d",
+                    "images_file_path": "C:\\git\\face_recognition_app\\src\\backend\\app\\../../shared/assets/faces\\bebb5dc2-7d8d-4e4f-bb08-61e9b1f87f8d"
+                }
+            ]
+        },
+        "19d5f25e-c306-4800-9783-ba0837e13d57": {
+            "id": "19d5f25e-c306-4800-9783-ba0837e13d57",
+            "name": "Zolika Kiss",
+            "faces": [
+                {
+                    "id": "bebb5dc2-7d8d-4e4f-bb08-61e9b1f87f8d",
+                    "images_file_path": "C:\\git\\face_recognition_app\\src\\backend\\app\\../../shared/assets/faces\\bebb5dc2-7d8d-4e4f-bb08-61e9b1f87f8d"
+                }
+            ]
+        },
+        "b83a6b80-22a5-47b7-bb76-05a04e8f89aa": {
+            "id": "b83a6b80-22a5-47b7-bb76-05a04e8f89aa",
+            "name": "Valentint K\u00e9kesi",
+            "faces": [
+                {
+                    "id": "bebb5dc2-7d8d-4e4f-bb08-61e9b1f87f8d",
+                    "images_file_path": "C:\\git\\face_recognition_app\\src\\backend\\app\\../../shared/assets/faces\\bebb5dc2-7d8d-4e4f-bb08-61e9b1f87f8d"
+                }
+            ]
+        },
+        "8729ec7b-8ec7-447b-a05f-159ff3914448": {
+            "id": "8729ec7b-8ec7-447b-a05f-159ff3914448",
+            "name": "Valentint Kov\u00e1cs",
+            "faces": [
+                {
+                    "id": "bebb5dc2-7d8d-4e4f-bb08-61e9b1f87f8d",
+                    "images_file_path": "C:\\git\\face_recognition_app\\src\\backend\\app\\../../shared/assets/faces\\bebb5dc2-7d8d-4e4f-bb08-61e9b1f87f8d"
+                }
+            ]
+        },
+        "65b483a9-2c25-4370-8337-0e1c13421b2d": {
+            "id": "65b483a9-2c25-4370-8337-0e1c13421b2d",
+            "name": "Sanyika Kov\u00e1cs",
+            "faces": [
+                {
+                    "id": "bebb5dc2-7d8d-4e4f-bb08-61e9b1f87f8d",
+                    "images_file_path": "C:\\git\\face_recognition_app\\src\\backend\\app\\../../shared/assets/faces\\bebb5dc2-7d8d-4e4f-bb08-61e9b1f87f8d"
+                }
+            ]
+        },
+        "a8ff4e92-41bd-4e71-9ff1-b51fb60eb61b": {
+            "id": "a8ff4e92-41bd-4e71-9ff1-b51fb60eb61b",
+            "name": "Sanyika Kov\u00e1cs",
+            "faces": [
+                {
+                    "id": "bebb5dc2-7d8d-4e4f-bb08-61e9b1f87f8d",
+                    "images_file_path": "C:\\git\\face_recognition_app\\src\\backend\\app\\../../shared/assets/faces\\bebb5dc2-7d8d-4e4f-bb08-61e9b1f87f8d"
+                }
+            ]
+        },
+        "9f48d81f-c4ee-4ea5-8292-76c0ee6ecd61": {
+            "id": "9f48d81f-c4ee-4ea5-8292-76c0ee6ecd61",
+            "name": "Zolika Kov\u00e1cs",
+            "faces": [
+                {
+                    "id": "bebb5dc2-7d8d-4e4f-bb08-61e9b1f87f8d",
+                    "images_file_path": "C:\\git\\face_recognition_app\\src\\backend\\app\\../../shared/assets/faces\\bebb5dc2-7d8d-4e4f-bb08-61e9b1f87f8d"
+                }
+            ]
+        },
+        "6ee53ef7-b52b-4ccc-8b42-88d24bf0a5b1": {
+            "id": "6ee53ef7-b52b-4ccc-8b42-88d24bf0a5b1",
+            "name": "Sanyika Nagy",
+            "faces": [
+                {
+                    "id": "bebb5dc2-7d8d-4e4f-bb08-61e9b1f87f8d",
+                    "images_file_path": "C:\\git\\face_recognition_app\\src\\backend\\app\\../../shared/assets/faces\\bebb5dc2-7d8d-4e4f-bb08-61e9b1f87f8d"
+                }
+            ]
+        },
+        "c0d3edb8-e486-4fff-8fbf-d1d00cc47981": {
+            "id": "c0d3edb8-e486-4fff-8fbf-d1d00cc47981",
+            "name": "Pistike Kov\u00e1cs",
+            "faces": [
+                {
+                    "id": "bebb5dc2-7d8d-4e4f-bb08-61e9b1f87f8d",
+                    "images_file_path": "C:\\git\\face_recognition_app\\src\\backend\\app\\../../shared/assets/faces\\bebb5dc2-7d8d-4e4f-bb08-61e9b1f87f8d"
+                }
+            ]
+        },
+        "94e08673-d6dc-448c-8d51-39d709e4d45c": {
+            "id": "94e08673-d6dc-448c-8d51-39d709e4d45c",
+            "name": "Leonidasz K\u00e9kesi",
+            "faces": [
+                {
+                    "id": "bebb5dc2-7d8d-4e4f-bb08-61e9b1f87f8d",
+                    "images_file_path": "C:\\git\\face_recognition_app\\src\\backend\\app\\../../shared/assets/faces\\bebb5dc2-7d8d-4e4f-bb08-61e9b1f87f8d"
+                }
+            ]
+        },
+        "fc84a8d2-ac41-411d-b281-ae8270a6f57f": {
+            "id": "fc84a8d2-ac41-411d-b281-ae8270a6f57f",
+            "name": "Sanyika Nagy",
+            "faces": [
+                {
+                    "id": "bebb5dc2-7d8d-4e4f-bb08-61e9b1f87f8d",
+                    "images_file_path": "C:\\git\\face_recognition_app\\src\\backend\\app\\../../shared/assets/faces\\bebb5dc2-7d8d-4e4f-bb08-61e9b1f87f8d"
+                }
+            ]
+        },
+        "4d3a4e84-1b76-4f88-adef-2198e9076dd3": {
+            "id": "4d3a4e84-1b76-4f88-adef-2198e9076dd3",
+            "name": "Zolika Kov\u00e1cs",
+            "faces": [
+                {
+                    "id": "bebb5dc2-7d8d-4e4f-bb08-61e9b1f87f8d",
+                    "images_file_path": "C:\\git\\face_recognition_app\\src\\backend\\app\\../../shared/assets/faces\\bebb5dc2-7d8d-4e4f-bb08-61e9b1f87f8d"
+                }
+            ]
+        },
+        "e2c415cd-91a6-4b8c-91ed-d7e9c5d4e9df": {
+            "id": "e2c415cd-91a6-4b8c-91ed-d7e9c5d4e9df",
+            "name": "Zolika Kiss",
+            "faces": [
+                {
+                    "id": "bebb5dc2-7d8d-4e4f-bb08-61e9b1f87f8d",
+                    "images_file_path": "C:\\git\\face_recognition_app\\src\\backend\\app\\../../shared/assets/faces\\bebb5dc2-7d8d-4e4f-bb08-61e9b1f87f8d"
+                }
+            ]
+        },
+        "8e4f8b6b-8cbc-48e4-a30d-140139ded198": {
+            "id": "8e4f8b6b-8cbc-48e4-a30d-140139ded198",
+            "name": "Valentint K\u00e9kesi",
+            "faces": [
+                {
+                    "id": "c64e7fb6-8425-4603-bc91-8a07db00d794",
+                    "images_file_path": "C:\\git\\face_recognition_app\\src\\backend\\app\\../../shared/assets/faces\\c64e7fb6-8425-4603-bc91-8a07db00d794"
+                }
+            ]
+        },
+        "29619788-c85c-4632-95b5-4c56098ca1c4": {
+            "id": "29619788-c85c-4632-95b5-4c56098ca1c4",
+            "name": "Sanyika Kiss",
+            "faces": [
+                {
+                    "id": "c64e7fb6-8425-4603-bc91-8a07db00d794",
+                    "images_file_path": "C:\\git\\face_recognition_app\\src\\backend\\app\\../../shared/assets/faces\\c64e7fb6-8425-4603-bc91-8a07db00d794"
+                }
+            ]
+        },
+        "654b7917-1614-4301-b1e2-1b8af54e76e4": {
+            "id": "654b7917-1614-4301-b1e2-1b8af54e76e4",
+            "name": "Sanyika Szab\u00f3",
+            "faces": [
+                {
+                    "id": "c64e7fb6-8425-4603-bc91-8a07db00d794",
+                    "images_file_path": "C:\\git\\face_recognition_app\\src\\backend\\app\\../../shared/assets/faces\\c64e7fb6-8425-4603-bc91-8a07db00d794"
+                }
+            ]
+        },
+        "e278da5d-4a22-4127-acb7-4410ea74dd3e": {
+            "id": "e278da5d-4a22-4127-acb7-4410ea74dd3e",
+            "name": "Sanyika Nagy",
+            "faces": [
+                {
+                    "id": "c64e7fb6-8425-4603-bc91-8a07db00d794",
+                    "images_file_path": "C:\\git\\face_recognition_app\\src\\backend\\app\\../../shared/assets/faces\\c64e7fb6-8425-4603-bc91-8a07db00d794"
+                }
+            ]
+        },
+        "06757372-293e-45a7-a77a-abc8196b9135": {
+            "id": "06757372-293e-45a7-a77a-abc8196b9135",
+            "name": "Valentint Kiss",
+            "faces": [
+                {
+                    "id": "c64e7fb6-8425-4603-bc91-8a07db00d794",
+                    "images_file_path": "C:\\git\\face_recognition_app\\src\\backend\\app\\../../shared/assets/faces\\c64e7fb6-8425-4603-bc91-8a07db00d794"
+                }
+            ]
+        },
+        "9cb2c7e3-377d-4893-a62e-f2407e694397": {
+            "id": "9cb2c7e3-377d-4893-a62e-f2407e694397",
+            "name": "Leonidasz Kiss",
+            "faces": [
+                {
+                    "id": "c64e7fb6-8425-4603-bc91-8a07db00d794",
+                    "images_file_path": "C:\\git\\face_recognition_app\\src\\backend\\app\\../../shared/assets/faces\\c64e7fb6-8425-4603-bc91-8a07db00d794"
+                }
+            ]
+        },
+        "2ce7f49b-3b2a-450c-9551-a2fd257ab59f": {
+            "id": "2ce7f49b-3b2a-450c-9551-a2fd257ab59f",
+            "name": "Pistike Nagy",
+            "faces": [
+                {
+                    "id": "c64e7fb6-8425-4603-bc91-8a07db00d794",
+                    "images_file_path": "C:\\git\\face_recognition_app\\src\\backend\\app\\../../shared/assets/faces\\c64e7fb6-8425-4603-bc91-8a07db00d794"
+                }
+            ]
+        },
+        "fe3d746f-cd73-46e0-a980-134f27341e0f": {
+            "id": "fe3d746f-cd73-46e0-a980-134f27341e0f",
+            "name": "Leonidasz Nagy",
+            "faces": [
+                {
+                    "id": "c64e7fb6-8425-4603-bc91-8a07db00d794",
+                    "images_file_path": "C:\\git\\face_recognition_app\\src\\backend\\app\\../../shared/assets/faces\\c64e7fb6-8425-4603-bc91-8a07db00d794"
+                }
+            ]
+        },
+        "e5355dcf-04e0-4760-abff-7518a2e0afc0": {
+            "id": "e5355dcf-04e0-4760-abff-7518a2e0afc0",
+            "name": "Zolika Szab\u00f3",
+            "faces": [
+                {
+                    "id": "c64e7fb6-8425-4603-bc91-8a07db00d794",
+                    "images_file_path": "C:\\git\\face_recognition_app\\src\\backend\\app\\../../shared/assets/faces\\c64e7fb6-8425-4603-bc91-8a07db00d794"
+                }
+            ]
+        },
+        "005a5ba3-f496-4e68-9605-c8d1d794930d": {
+            "id": "005a5ba3-f496-4e68-9605-c8d1d794930d",
+            "name": "Pistike Nagy",
+            "faces": [
+                {
+                    "id": "c64e7fb6-8425-4603-bc91-8a07db00d794",
+                    "images_file_path": "C:\\git\\face_recognition_app\\src\\backend\\app\\../../shared/assets/faces\\c64e7fb6-8425-4603-bc91-8a07db00d794"
+                }
+            ]
+        },
+        "08a5b548-9127-4a1f-83ea-0f13e4c8c30e": {
+            "id": "08a5b548-9127-4a1f-83ea-0f13e4c8c30e",
+            "name": "Valentint Kov\u00e1cs",
+            "faces": [
+                {
+                    "id": "c64e7fb6-8425-4603-bc91-8a07db00d794",
+                    "images_file_path": "C:\\git\\face_recognition_app\\src\\backend\\app\\../../shared/assets/faces\\c64e7fb6-8425-4603-bc91-8a07db00d794"
+                }
+            ]
+        },
+        "21edf3f8-4255-4bcb-840a-cb2472934d33": {
+            "id": "21edf3f8-4255-4bcb-840a-cb2472934d33",
+            "name": "Valentint Kov\u00e1cs",
+            "faces": [
+                {
+                    "id": "c64e7fb6-8425-4603-bc91-8a07db00d794",
+                    "images_file_path": "C:\\git\\face_recognition_app\\src\\backend\\app\\../../shared/assets/faces\\c64e7fb6-8425-4603-bc91-8a07db00d794"
+                }
+            ]
+        },
+        "ed7a47c1-ef30-4aa2-a22c-6660b2d2ab24": {
+            "id": "ed7a47c1-ef30-4aa2-a22c-6660b2d2ab24",
+            "name": "Zolika K\u00e9kesi",
+            "faces": [
+                {
+                    "id": "c64e7fb6-8425-4603-bc91-8a07db00d794",
+                    "images_file_path": "C:\\git\\face_recognition_app\\src\\backend\\app\\../../shared/assets/faces\\c64e7fb6-8425-4603-bc91-8a07db00d794"
+                }
+            ]
+        },
+        "09e0a6c9-40d7-4f5e-bc06-6094c3154200": {
+            "id": "09e0a6c9-40d7-4f5e-bc06-6094c3154200",
+            "name": "Zolika Kov\u00e1cs",
+            "faces": [
+                {
+                    "id": "c64e7fb6-8425-4603-bc91-8a07db00d794",
+                    "images_file_path": "C:\\git\\face_recognition_app\\src\\backend\\app\\../../shared/assets/faces\\c64e7fb6-8425-4603-bc91-8a07db00d794"
+                }
+            ]
+        }
+    }
+}

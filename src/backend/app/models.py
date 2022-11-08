@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from uuid import UUID
-from typing import List, Tuple
+from typing import List, Tuple, Dict
 
 import numpy as np
 
@@ -30,6 +30,9 @@ class Person(BaseModel):
     id: UUID # generated via face_recognizer
     name: str
     faces: List[Face]
+
+class Persons(BaseModel):
+    persons: Dict[str,Person] = {} # keys are str(UUID) because this way it can be serialized
 
 class BoundingBox(BaseModel):
     """Model class which represents a bounding box.
@@ -73,5 +76,5 @@ class BoundingBox(BaseModel):
         return width*height
 
 class FrameInfo(BaseModel):
-    bounding_boxes: List[BoundingBox]
-    names: List[str]
+    bounding_boxes: Dict[UUID,BoundingBox]
+    bounding_box_person_connector: Dict[UUID,Person]
