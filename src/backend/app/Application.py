@@ -77,9 +77,6 @@ class Application(metaclass=Singleton):
                 self.face_detector.update(frame)
                 bounding_boxes_with_ids = self.face_detector.get_bounding_boxes()
                 new_bounding_boxes_with_ids = self.face_detector.get_new_bounding_boxes()
-
-                print(f"Bounding boxes {bounding_boxes_with_ids}")
-                print(f"New bounding boxes {new_bounding_boxes_with_ids}")
                 
                 # delete_old_connections
                 old_bounding_box_ids = list(bounding_box_person_connector.keys())

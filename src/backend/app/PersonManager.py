@@ -47,8 +47,8 @@ class PersonManager(metaclass=Singleton):
             content = content_file.read()
             if not len(content):
                 content = "{}"
-            
             self.__persons = Persons.parse_raw(content)
+            print(f"Initial persons: {self.__persons}")
 
         self.flag_lock = threading.Lock()
         self.persons_lock = threading.Lock() # from main thread only lock when writing, because save thread doesn't write the persons
@@ -64,9 +64,12 @@ class PersonManager(metaclass=Singleton):
         # if the face id is new creates a new person
 
         # check if the face is registered to another person
-        registered_face_ids = [person.faces for person in self.__persons.persons.values()]
-        registered_face_ids = list(chain.from_iterable(registered_face_ids))
-        
+        registered_faces = [person.faces for person in self.__persons.persons.values()]
+        registered_faces= list(chain.from_iterable(registered_faces)) #flatten
+        registered_face_ids = [registered_face.id for registered_face in registered_faces]
+        print(f"Registered face_ids: {registered_face_ids}")
+        print(f"Face id: {face.id}")
+
         if face.id in registered_face_ids:
             return
 
@@ -122,9 +125,9 @@ class PersonManager(metaclass=Singleton):
             if face_uuid in face_uuids:
                 return person
     
-    def get_on_screen_persons(self,face_uuids:UUID)->List[Person]:
-        persons =  [self.find_person_by_face_uuid(uuid) for uuid in face_uuids]
-        return persons
+    # def get_on_screen_persons(self,face_uuids:UUID)->List[Person]:
+    #     persons =  [self.find_person_by_face_uuid(uuid) for uuid in face_uuids]
+    #     return persons
     
     def get_all_persons(self)->Dict[UUID,Person]:
         # Consider this to return a list instead of dict
@@ -143,6 +146,7 @@ class PersonManager(metaclass=Singleton):
             print("Checking saving...")
             if(need_to_save):
                 print("Saving persons...")
+                print(f"Persons to save: {self.__persons}")
                 with self.persons_lock:
                     jsondata = self.__persons.json(indent = 4)    
                 try:

@@ -25,6 +25,8 @@ def draw_names(frame: np.ndarray,bounding_boxes: Dict[UUID,BoundingBox], boundin
 
     for id_ in bounding_boxes:
         org = (bounding_boxes[id_].bottom,bounding_boxes[id_].left)
-        name = bounding_boxes_person_connector[id_].name
-        cv2.putText(frame,name, org, font, 
+        
+        if id_ in list(bounding_boxes_person_connector.keys()):
+            name = bounding_boxes_person_connector[id_].name
+            cv2.putText(frame,name, org, font, 
                fontScale, color, thickness, cv2.LINE_AA)

@@ -73,11 +73,8 @@ class FaceRecognizer(metaclass=Singleton):
         t3 = time.time()
         closest_uuid,min_distance = self.get_closest_group(encoding)
         t4 = time.time()
-        print(f"Closest found time: {t4-t3}")
-
-        print(f"Min distance: {min_distance}")
+    
         if min_distance > self.recognize_tolerance:
-            print("New face detected!")
             target_uuid = uuid4()
             ImagesManager().save_image(target_uuid,image) # only save image if a brand new face is detected
         else:
@@ -85,9 +82,6 @@ class FaceRecognizer(metaclass=Singleton):
 
         if min_distance > self.identical_tolerance:
             # ImagesManager().save_image(target_uuid,image) # collects data from already detected faces
-            print("Adding encoding")
             self.add_encoding(encoding,target_uuid)
-        
-
-        #print(f"Face encodings: {self.face_encodings_dict.keys()}")
+    
         return target_uuid    
