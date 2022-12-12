@@ -1,6 +1,7 @@
 from app.models import Face,Person, Persons
 from app.name_generator import name_generator
 from app.singleton import Singleton
+from app.Application import Application
 
 from typing import Dict, List
 from uuid import UUID, uuid4
@@ -108,7 +109,10 @@ class PersonManager(metaclass=Singleton):
 
     def delete_person(self,person_id: UUID):
         self.__raise_if_person_not_found(person_id)
-
+        target_person = self.__persons.persons[str(person_id)]
+        #delete saved faces
+        for face in target_person.faces:
+            Application().images_manager.delete_images_dir(face.id)
         del self.__persons.persons[str(person_id)]
         self.__write_need_to_save()
 
