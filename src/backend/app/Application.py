@@ -38,6 +38,8 @@ class Application(metaclass=Singleton):
         self.processing_thread.start()
         self.processed_frame_info_lock = threading.Lock()
 
+        print("Application started!")
+
     def update_frame(self,frame: np.ndarray):
         """This is the main function of the application.
             It is supposed to called for every frame.

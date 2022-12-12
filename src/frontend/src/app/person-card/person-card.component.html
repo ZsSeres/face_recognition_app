@@ -1,0 +1,29 @@
+<div class="person-card">
+  <div class="img-holder">
+    <img [src]="person.faces[0].images_file_path" height="100%" width="100%">
+  </div>
+  <div class="info-holder" *ngIf="!editing;else editVision">
+      <div class="name">{{person.name}}</div>
+      <div class="button" (click)="onEdit()">
+        <fa-icon  icon="edit" class="fa-1x"> </fa-icon>
+        Edit
+      </div>
+      <div class="delete-button" (click)="onDelete()">
+        <fa-icon  icon="trash-can" class="fa-1x"> </fa-icon>
+        Delete
+      </div>
+    </div>
+  <ng-template #editVision>
+    <div class="info-holder">
+      <input class="input" (keyup)="onKey($event)">
+        <div class="button" (click)="onCancel()">
+          <fa-icon  icon="cancel" class="fa-1x"> </fa-icon>
+          Cancel
+        </div>
+        <div class="button" (click)="onModify()">
+          <fa-icon  icon="check" class="fa-1x"> </fa-icon>
+          Modify
+        </div>
+      </div>
+  </ng-template>
+</div>

@@ -17,10 +17,10 @@ class VideoTransformer(MediaStreamTrack):
 
     kind = "video"
 
-    def __init__(self, track, sample_period_time=DEFAULT_SAMPLE_PERIOD_TIME):
+    def __init__(self, track, app:Application,sample_period_time=DEFAULT_SAMPLE_PERIOD_TIME):
         super().__init__()  
+        self.app = app
         self.track = track
-        self.app = Application()
         
     async def recv(self):    
         frame = await self.track.recv()

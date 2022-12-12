@@ -6,7 +6,7 @@ function createPeerConnection() {
         sdpSemantics: 'unified-plan'
     };
 
-    pc = new RTCPeerConnection(config);
+    pc = new RTCPeerConnection();
 
     // connect audio / video
     pc.addEventListener('track', function(evt) {

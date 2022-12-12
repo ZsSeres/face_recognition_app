@@ -91,7 +91,7 @@ class PersonManager(metaclass=Singleton):
     def rename_person(self,person_id: UUID,new_name: str):
         self.__raise_if_person_not_found(person_id)
         # check the validity of the new_name?
-        with self.person_lock:
+        with self.persons_lock:
             self.__persons.persons[str(person_id)].name = new_name
         self.__write_need_to_save()
 
@@ -106,11 +106,12 @@ class PersonManager(metaclass=Singleton):
             self.__delete_person(from_person_id)
         self.__write_need_to_save()
 
-    def __delete_person(self,person_id: UUID):
+    def delete_person(self,person_id: UUID):
         self.__raise_if_person_not_found(person_id)
 
         del self.__persons.persons[str(person_id)]
-    
+        self.__write_need_to_save()
+
     def get_person(self,person_id: UUID)->Person:
         self.__raise_if_person_not_found(person_id)
         

@@ -1,0 +1,11 @@
+<div class="web-cam-holder">
+  <div *ngIf="!isPlaying ;else playing" class="not-playing">
+      <fa-icon *ngIf="!isLoading" icon="circle-play" class="play-icon fa-3x" (click)="start()"> </fa-icon>
+      <!-- <ngx-spinner [fullScreen]="false" type="ball-clip-rotate-multiple" size="medium">
+        <p class="loading">Loading Awesomeness...</p>
+      </ngx-spinner> -->
+  </div>
+  <ng-template #playing>
+    <video  #tag autoplay="true" playsinline="true" class="videobox"></video>
+  </ng-template>
+</div>

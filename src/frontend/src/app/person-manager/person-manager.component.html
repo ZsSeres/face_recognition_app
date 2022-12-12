@@ -1,0 +1,7 @@
+<div class="person-card-container">
+  <div *ngFor="let person of persons" >
+    <app-person-card [person]="person" (callDeleteEvent)="deletePerson($event)" (editStartedEvent)="startedEditing($event)" (editEndedEvent)="endEditing($event)"></app-person-card>
+  </div>
+</div>
+
+

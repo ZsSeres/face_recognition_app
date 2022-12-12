@@ -8,17 +8,24 @@ import uuid
 
 import cv2
 from aiohttp import web
+import aiohttp_cors
 from av import VideoFrame
-
 from aiortc import MediaStreamTrack, RTCPeerConnection, RTCSessionDescription
 from aiortc.contrib.media import MediaBlackhole, MediaPlayer, MediaRecorder, MediaRelay
 from VideoTransformer import VideoTransformer
+from app.Application import Application
+from app.PersonManager import PersonNotFoundException
+
+from network_models import GetPersonsResponse
+
 
 ROOT = os.path.dirname(__file__)
 
 logger = logging.getLogger("pc")
 pcs = set()
 relay = MediaRelay()
+
+core = Application();
 
 async def index(request):
     content = open(os.path.join(ROOT, "index.html"), "r").read()
@@ -29,8 +36,8 @@ async def javascript(request):
     content = open(os.path.join(ROOT, "client.js"), "r").read()
     return web.Response(content_type="application/javascript", text=content)
 
-
 async def offer(request):
+    print("called offer")
     params = await request.json()
     offer = RTCSessionDescription(sdp=params["sdp"], type=params["type"])
 
@@ -48,7 +55,7 @@ async def offer(request):
     @pc.on("track")
     def on_track(track):
         log_info("Track %s received", track.kind)
-        pc.addTrack(VideoTransformer(relay.subscribe(track)))
+        pc.addTrack(VideoTransformer(relay.subscribe(track),core))
         if args.record_to:
             recorder.addTrack(relay.subscribe(track))
 
@@ -67,6 +74,21 @@ async def offer(request):
         ),
     )
 
+# dummy endpoint for debugging purposes
+async def dummy(request):
+    return web.Response(
+        content_type="application/json",
+        text=json.dumps({"text": "Hello!"})
+    )
+
+async def get_persons(request):
+    persons = list(Application().person_manager.get_all_persons().values())
+    resp = GetPersonsResponse(persons=persons)
+
+    return web.Response(
+        content_type="application/json",
+        text=resp.json()
+    )
 
 async def on_shutdown(app):
     # close peer connections
@@ -74,6 +96,19 @@ async def on_shutdown(app):
     await asyncio.gather(*coros)
     pcs.clear()
 
+async def delete_person(request):
+    params = await request.json()
+    print(f"id to delete:{params['id']}")
+    try:
+        Application().person_manager.delete_person(params["id"]);
+    except PersonNotFoundException as e:
+        print(f"Person with id {params['id']} not found")
+
+async def rename_person(request):
+    params = await request.json()
+    print(f"id to rename: {params['id']}")
+    print(f"new name: {params['new_name']}")
+    Application().person_manager.rename_person(params['id'],params['new_name'])
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -107,6 +142,21 @@ if __name__ == "__main__":
     app.router.add_get("/", index)
     app.router.add_get("/client.js", javascript)
     app.router.add_post("/offer", offer)
+    app.router.add_get("/dummy",dummy)
+    app.router.add_get("/get-persons",get_persons)
+    app.router.add_post('/rename-person',rename_person)
+    app.router.add_post('/delete-person',delete_person)
+    
+    cors = aiohttp_cors.setup(app, defaults={
+    "*": aiohttp_cors.ResourceOptions(
+            allow_credentials=True,
+            expose_headers="*",
+            allow_headers="*"
+        )
+    })
+    for route in list(app.router.routes()):
+        cors.add(route)
+
     web.run_app(
         app, access_log=None, host=args.host, port=args.port, ssl_context=ssl_context
     )

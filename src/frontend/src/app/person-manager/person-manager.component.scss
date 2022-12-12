@@ -1,0 +1,14 @@
+
+.person-card-container{
+  // display: flex;
+  // flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-y : auto;
+  height: 500px;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.person-card-container::-webkit-scrollbar {
+  display: none;
+}
