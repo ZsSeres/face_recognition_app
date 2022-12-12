@@ -10,6 +10,7 @@ export class PersonCardComponent implements OnInit {
   @Input() person!: Person;
   editing: boolean = false;
   tmpName?: string;
+  imgUrl?: string;
   @Output() callDeleteEvent = new EventEmitter<number>();
   @Output() editStartedEvent = new EventEmitter<void>();
   @Output() editEndedEvent = new EventEmitter<void>();
@@ -18,6 +19,7 @@ export class PersonCardComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.imgUrl = "http://localhost:8080/get-image/"+this.person.id.toString()
   }
 
   editEnded():void{

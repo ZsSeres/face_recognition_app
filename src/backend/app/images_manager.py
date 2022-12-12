@@ -3,7 +3,7 @@ import cv2
 from uuid import UUID, uuid4
 from typing import List
 import os
-
+import shutil
 
 import numpy as np
 
@@ -74,7 +74,16 @@ class ImagesManager:
     def get_images_dir(self,face_uuid: UUID)->str:
         """Returns full path"""
         #TODO: test this!
-        print(f"Base path: {self.base_path}")
-        print(f"Face uuid: {face_uuid}")
+        #print(f"Base path: {self.base_path}")
+        #print(f"Face uuid: {face_uuid}")
         
-        return os.path.join(self.base_path,str(face_uuid))
+        abs_path = os.path.abspath("../shared/assets/faces")
+        print(abs_path)
+
+        return os.path.join(abs_path,str(face_uuid))
+
+    def delete_images_dir(self,face_uuid:UUID)->None:
+        abs_path = os.path.abspath("../shared/assets/faces")
+
+        full_path = os.path.join(abs_path,face_uuid)
+        shutil.rmtree(full_path, ignore_errors=False, onerror=None)

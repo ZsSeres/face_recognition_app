@@ -5,6 +5,8 @@ import logging
 import os
 import ssl
 import uuid
+from pathlib import Path
+from uuid import UUID
 
 import cv2
 from aiohttp import web
@@ -18,6 +20,7 @@ from app.PersonManager import PersonNotFoundException
 
 from network_models import GetPersonsResponse
 
+routes = web.RouteTableDef()
 
 ROOT = os.path.dirname(__file__)
 
@@ -35,6 +38,17 @@ async def index(request):
 async def javascript(request):
     content = open(os.path.join(ROOT, "client.js"), "r").read()
     return web.Response(content_type="application/javascript", text=content)
+
+@routes.get('/get-image/{person_id}')
+async def serve_img(request):
+    """Dummy endpoint that shows how to serve images"""
+    _id = UUID(request.match_info['person_id'])
+    person = Application().person_manager.get_person(_id)
+    file_dir=Application().images_manager.get_images_dir(person.faces[0].id)
+    file_names = os.listdir(file_dir)
+    path = os.path.join(file_dir,file_names[0])
+    data = Path(path).read_bytes()
+    return web.Response(body=data, content_type="image/png")
 
 async def offer(request):
     print("called offer")
@@ -146,6 +160,7 @@ if __name__ == "__main__":
     app.router.add_get("/get-persons",get_persons)
     app.router.add_post('/rename-person',rename_person)
     app.router.add_post('/delete-person',delete_person)
+    app.router.add_get('/get-image/{person_id}',serve_img)
     
     cors = aiohttp_cors.setup(app, defaults={
     "*": aiohttp_cors.ResourceOptions(

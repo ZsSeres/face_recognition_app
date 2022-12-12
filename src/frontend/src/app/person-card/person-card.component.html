@@ -1,6 +1,6 @@
 <div class="person-card">
   <div class="img-holder">
-    <img [src]="person.faces[0].images_file_path" height="100%" width="100%">
+    <img [src]="imgUrl" height="100%" width="100%">
   </div>
   <div class="info-holder" *ngIf="!editing;else editVision">
       <div class="name">{{person.name}}</div>

@@ -8,8 +8,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class WebCamComponent implements OnInit{
   pc?: RTCPeerConnection
-  @ViewChild('tag', { static: true }) videoBox!: ElementRef;
-
+  videoElement?: HTMLVideoElement | null
   isLoading: boolean = false
   isPlaying: boolean = false
   errorMessage?: string //if an error occured displaying it!
@@ -25,12 +24,10 @@ export class WebCamComponent implements OnInit{
 
       // connect audio / video
       this.pc.addEventListener('track',function(evt) {
-        self.videoBox.nativeElement.srcObject = evt.streams[0];
-        console.log("Hello :D")
         self.isPlaying = true;
-        self.spinner.hide()
+        self.videoElement = <HTMLVideoElement>document.getElementById("videobox")
+        self.videoElement.srcObject = evt.streams[0];
         self.isLoading = false;
-
       })
   }
 
